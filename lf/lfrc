@@ -57,13 +57,20 @@ map O $mimeopen --ask $f
 # }}
 
 cmd open ${{
-    case "$(file --mime-type -Lb $f)" in
-        text/*) nvim "$f" ;;
-        image/*) mirage "$f" >/dev/null 2>&1 & disown ;;
-        video/*) mpv "$f" ;;
-        audio/*) mpv "$f" ;;
-        application/pdf) zathura --fork "$f" ;;
-        *) setsid xdg-open "$f" >/dev/null 2>&1 ;;
+    case "$f" in
+        *.java|*.kt|*.c|*.h|*.cpp|*.go|*.rs|*.py|*.js|*.ts)
+            nvim "$f" || true
+            ;;
+        *)
+            case "$(file --mime-type -Lb $f)" in
+                text/*) nvim "$f" || true ;;
+                image/*) mirage "$f" >/dev/null 2>&1 & disown ;;
+                video/*) mpv "$f" --sub-file-paths=. --sub-auto=all ;;
+                audio/*) mpv "$f" ;;
+                application/pdf) zathura --fork "$f" ;;
+                *) setsid xdg-open "$f" >/dev/null 2>&1 ;;
+            esac
+            ;;
     esac
 }}
 # mkdir command. See wiki if you want it to select created dir
@@ -179,11 +186,17 @@ map gc cd ~/.config
 map gD cd ~/Documents
 map gd cd ~/Downloads
 map gP cd ~/Pictures
+map gv cd ~/Videos/
+map gj cd "~/Videos/[Judas] Jujutsu Kaisen (Season 2) [1080p][HEVC x265 10bit][Dual-Audio][Multi-Subs]/"
 map gt cd ~/.local/share/Trash/files
 map gp cd ~/Projects
 map gb cd ~/Books
 map gm cd /run/media/nikola/
 map gv cd ~/vault
+map gf cd "~/Faks/Paralelni sistemi/"
+
+# Open current dir in kitty
+map <c-t> &setsid -f kitty --directory "$PWD"
 
 # Open current dir in vscode
 cmd vscode $code "$PWD"

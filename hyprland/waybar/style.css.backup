@@ -1,8 +1,4 @@
-@define-color text #D8E5D9;
-@define-color bar_bg rgba(32, 48, 53, 0.88);
-@define-color active #5E8C97;
-@define-color hover #786F62;
-@define-color accent #A2878C;
+@define-color text #DDD5C4;
 
 * {
   min-height: 0;
@@ -11,27 +7,25 @@
 }
 
 window#waybar {
-  background: @bar_bg;
+  background-color: transparent;
+  margin: 5px;
   color: @text;
 }
 
 #workspaces button {
   padding: 0 5px;
-  color: @text;
   background: transparent;
-}
-
-#workspaces button.active {
-  background: @active;
-}
-
-#workspaces button:hover {
-  background: @hover;
+  border-bottom: 3px solid transparent;
+  color: @text;
 }
 
 #workspaces button.focused {
-  background: @active;
-  border-bottom: 3px solid @accent;
+  background: rgba(255, 255, 255, 0.6);
+  border-bottom: 3px solid black;
+}
+
+#workspaces button.active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* .modules-left { */
@@ -41,13 +35,15 @@ window#waybar {
 /* } */
 
 .modules-center {
-  margin: 0;
+  margin: 5px 0 0 10px;
   padding: 0 10px 0 10px;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .modules-right {
-  margin: 0;
+  margin: 5px 10px 0 0;
   padding: 0 10px 0 10px;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 #mode {
@@ -77,25 +73,13 @@ window#waybar {
 }
 
 #workspaces {
-  margin: 0;
+  margin: 5px 0 0 10px;
   padding: 0 10px 0 10px;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 #custom-weather {
-  margin: 0;
+  margin: 5px 0 0 10px;
   padding: 0 10px 0 10px;
-}
-
-#cava {
-  color: #5E8C97;
-  padding: 0 6px 0 10px;
-}
-
-#custom-media {
-  padding: 0 10px 0 4px;
-}
-
-#custom-notification {
-  font-family: "JetBrainsMono Nerd Font";
-  padding: 0 8px;
+  background: rgba(0, 0, 0, 0.7);
 }

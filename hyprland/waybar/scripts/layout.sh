@@ -1,6 +1,6 @@
 #!/bin/bash
 
-layout=$(hyprctl devices | grep "active keymap" | sed -n '3p' | cut -d ':' -f2- | xargs)
+layout=$(hyprctl devices | grep "active keymap" | sed -n '1p' | cut -d ':' -f2- | xargs)
 
 case "$layout" in
 "English (US)")
