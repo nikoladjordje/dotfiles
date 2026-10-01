@@ -213,10 +213,7 @@ hl.bind(
 hl.bind(mainMod .. " + CTRL + S", hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | wl-copy']]))
 
 -- Language switch + Waybar refresh.
-hl.bind(
-	"SUPER + SPACE",
-	hl.dsp.exec_cmd("hyprctl switchxkblayout by-tech-gaming-keyboard next; pkill -RTMIN+10 waybar")
-)
+hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("hyprctl switchxkblayout current next; pkill -RTMIN+10 waybar"))
 
 -- Power menu.
 hl.bind("SUPER + M", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/walker_powermenu.sh"))
@@ -363,7 +360,16 @@ hl.window_rule({
 	size = "500 700",
 	center = true,
 })
-
+hl.window_rule({
+	name = "steam-person-chat",
+	match = {
+		class = "steam",
+		title = "negative:^(Steam|Friends List)$",
+	},
+	float = true,
+	size = "700 600",
+	center = true,
+})
 -- Optional workspace routing. Enable after checking class names with: hyprctl clients
 -- hl.window_rule({ name = "brave-workspace",    match = { class = "Brave-browser" }, workspace = 2 })
 -- hl.window_rule({ name = "idea-workspace",     match = { class = "jetbrains-idea" }, workspace = 3 })
