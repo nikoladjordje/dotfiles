@@ -2,6 +2,6 @@
 
 city="Nis"
 
-weather=$(curl -s "wttr.in/${city}?format=%C+%t")
+weather=$(curl --silent --max-time 5 "wttr.in/${city}?format=%C+%t")
 
 echo "󰖙 $weather"
